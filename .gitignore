@@ -1,0 +1,7 @@
+.*
+!.gitignore
+DeepWinter.jar
+/server
+bin/
+build/
+out/

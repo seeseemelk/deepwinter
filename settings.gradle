@@ -1,0 +1,2 @@
+rootProject.name = 'DeepWinter'
+gradle.ext.deployDir = file("server")
