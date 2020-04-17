@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         sh './gradlew jar'
-        archiveArtifacts '/*.jar'
+        archiveArtifacts '*.jar'
       }
     }
 
