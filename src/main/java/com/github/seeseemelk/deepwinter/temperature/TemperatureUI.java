@@ -45,7 +45,7 @@ public class TemperatureUI extends Controller
 	
 	private BossBar showHUD(Player player)
 	{
-		BossBar bar = Bukkit.createBossBar("Temperature (°C)",
+		BossBar bar = Bukkit.createBossBar("Temperature (C)",
 				BarColor.RED,
 				BarStyle.SOLID);
 		bar.addPlayer(player);

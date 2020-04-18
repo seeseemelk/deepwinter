@@ -113,7 +113,7 @@ public class TemperatureController extends Controller
 		double ambientTemperature = getAmbientTemperatureOf(player);
 		double newTemperature = MathUtil.linearInterpolation(currentTemperature, ambientTemperature, 0.00005);
 		playerTemperatures.put(player, newTemperature);
-		player.sendMessage("Temp: " + newTemperature + "°C");
+		player.sendMessage("Temp: " + newTemperature + "C");
 	}
 	
 	private void updateAllPlayerTemperatures()
