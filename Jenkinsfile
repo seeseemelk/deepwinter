@@ -16,11 +16,29 @@ pipeline {
     }
 
     stage('Documentation') {
-      steps {
-        dir(path: 'docs') {
-          sh 'make html'
+      parallel {
+        stage('Manual') {
+          steps {
+            dir(path: 'docs') {
+              sh 'make html'
+            }
+
+            script {
+              publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'docs/build/html', reportFiles: 'index.html', reportName: 'Documentation', reportTitles: ''])
+            }
+
+          }
         }
-        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'docs/build/html', reportFiles: 'index.html', reportName: 'Documentation', reportTitles: ''])
+
+        stage('Javadoc') {
+          steps {
+            sh './gradlew javadoc'
+            script {
+              publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'build/docs/javadoc', reportFiles: 'index.html', reportName: 'Javadoc', reportTitles: ''])
+            }
+
+          }
+        }
 
       }
     }
