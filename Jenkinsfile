@@ -24,7 +24,7 @@ pipeline {
             }
 
             script {
-              publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'docs/build/html', reportFiles: 'index.html', reportName: 'Documentation', reportTitles: ''])
+              publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'docs/build/html', reportFiles: 'index.html', reportName: 'Manual', reportTitles: ''])
             }
 
           }
