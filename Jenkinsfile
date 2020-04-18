@@ -20,6 +20,7 @@ pipeline {
         dir(path: 'docs') {
           sh 'make html'
         }
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'docs/build/html', reportFiles: 'index.html', reportName: 'Documentation', reportTitles: ''])
 
       }
     }
