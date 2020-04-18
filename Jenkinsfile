@@ -15,5 +15,14 @@ pipeline {
       }
     }
 
+    stage('Documentation') {
+      steps {
+        dir(path: 'docs') {
+          sh 'make html'
+        }
+
+      }
+    }
+
   }
 }
