@@ -10,17 +10,17 @@ import com.github.seeseemelk.deepwinter.Controller;
 import com.github.seeseemelk.deepwinter.DeepWinter;
 
 public class MobController extends Controller implements Listener
-{	
+{
 	public MobController(DeepWinter plugin)
 	{
 		super(plugin);
 	}
-	
+
 	public void enable()
 	{
 		Bukkit.getPluginManager().registerEvents(this, plugin);
 	}
-	
+
 	@EventHandler
 	public void onEntitySpawn(EntitySpawnEvent event)
 	{

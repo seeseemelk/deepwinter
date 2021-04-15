@@ -17,39 +17,39 @@ public class TemperatureController extends Controller
 {
 	public static final double MIN_SURVIVABLE_TEMP = 35.0;
 	public static final double MAX_SURVIVABLE_TEMP = 40.5;
-	 
+
 	private final Map<Player, Double> playerTemperatures = new HashMap<>();
 	private final Set<HeatSource> heatSources = new HashSet<>();
 	private final TemperatureUI ui;
 	private final TemperatureEffects effects;
-	
+
 	public TemperatureController(DeepWinter plugin)
 	{
 		super(plugin);
 		ui = new TemperatureUI(plugin);
 		effects = new TemperatureEffects(plugin);
 	}
-	
+
 	@Override
 	public void enable()
 	{
-		heatSources.add(new HeatSource(Bukkit.getWorlds().get(0).getBlockAt(-60, 72, -54).getLocation(), 40));
-		
-		Bukkit.getScheduler().runTaskTimer(plugin, this::updateAllPlayerTemperatures, 1, 1);
-		effects.enable();
+//		heatSources.add(new HeatSource(Bukkit.getWorlds().get(0).getBlockAt(-60, 72, -54).getLocation(), 40));
+
+//		Bukkit.getScheduler().runTaskTimer(plugin, this::updateAllPlayerTemperatures, 1, 1);
+//		effects.enable();
 	}
-	
+
 	@Override
 	public void disable()
 	{
 		ui.disable();
 	}
-	
+
 	public TemperatureUI getUI()
 	{
 		return ui;
 	}
-	
+
 	/**
 	 * Gets the temperature at a given location.
 	 * @param location The location to get the temperature at.
@@ -63,7 +63,7 @@ public class TemperatureController extends Controller
 		else
 			return MathUtil.linearInterpolation(-20, -10, 1 - height);
 	}
-	
+
 	/**
 	 * Gets the ambient temperature of a player.
 	 * That is, the temperature at the location the player is right now.
@@ -74,7 +74,7 @@ public class TemperatureController extends Controller
 	{
 		return getTemperatureAt(player.getLocation()) + getHeatFromHeatSources(player.getLocation());
 	}
-	
+
 	/**
 	 * Get the amount of heat at a location from all heat sources.
 	 * @param location The location to get the heat from.
@@ -86,7 +86,7 @@ public class TemperatureController extends Controller
 			.mapToDouble(heatSource -> heatSource.getHeatLevelAt(location))
 			.reduce(0, (a, b) -> a + b);
 	}
-	
+
 	/**
 	 * Gets the temperature of a player.
 	 * @param player The player of whom to get the temperature of.
@@ -106,7 +106,7 @@ public class TemperatureController extends Controller
 	{
 		return location.getBlock().getLightFromSky() <= 4;
 	}
-	
+
 	private void updatePlayerTemperature(Player player)
 	{
 		double currentTemperature = getTemperature(player);
@@ -115,7 +115,7 @@ public class TemperatureController extends Controller
 		playerTemperatures.put(player, newTemperature);
 		player.sendMessage("Temp: " + newTemperature + "C");
 	}
-	
+
 	private void updateAllPlayerTemperatures()
 	{
 		Bukkit.getOnlinePlayers().stream()

@@ -1,3 +1,5 @@
 name: DeepWinter
 main: com.github.seeseemelk.deepwinter.DeepWinter
 version: 0.1.0
+load: startup
+api-version: 1.16
