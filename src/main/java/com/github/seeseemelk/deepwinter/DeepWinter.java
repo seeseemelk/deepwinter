@@ -2,6 +2,8 @@ package com.github.seeseemelk.deepwinter;
 
 import java.io.File;
 
+import com.github.seeseemelk.deepwinter.plants.Cotton;
+import org.bukkit.Bukkit;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,6 +19,7 @@ public class DeepWinter extends JavaPlugin
 	private WeatherController weatherController;
 	private MobController mobController;
 	private TemperatureController temperatureController;
+	private Cotton cotton;
 
 	public DeepWinter()
 	{
@@ -31,6 +34,9 @@ public class DeepWinter extends JavaPlugin
 	@Override
 	public void onEnable()
 	{
+		cotton = new Cotton();
+		Bukkit.getPluginManager().registerEvents(cotton, this);
+
 		weatherController = new WeatherController(this);
 		mobController = new MobController(this);
 		temperatureController = new TemperatureController(this);
