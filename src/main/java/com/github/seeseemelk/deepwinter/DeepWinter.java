@@ -34,8 +34,7 @@ public class DeepWinter extends JavaPlugin
 	@Override
 	public void onEnable()
 	{
-		cotton = new Cotton();
-		Bukkit.getPluginManager().registerEvents(cotton, this);
+		cotton = new Cotton(this);
 
 		weatherController = new WeatherController(this);
 		mobController = new MobController(this);
@@ -44,6 +43,8 @@ public class DeepWinter extends JavaPlugin
 		weatherController.enable();
 		mobController.enable();
 		temperatureController.enable();
+
+		Bukkit.getPluginManager().registerEvents(cotton, this);
 	}
 
 	@Override
